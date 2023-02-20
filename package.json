@@ -1,0 +1,33 @@
+{
+  "name": "hello_react",
+  "version": "1.0.0",
+  "description": "live course namaste dev",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nowwin17/hello_react.git"
+  },
+  "author": "Abhijeet Nigoskar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nowwin17/hello_react/issues"
+  },
+  "homepage": "https://github.com/nowwin17/hello_react#readme",
+  "devDependencies": {
+    "@babel/core": "^7.20.12",
+    "babel-plugin-transform-remove-console": "^6.9.4",
+    "parcel": "^2.8.3",
+    "process": "^0.11.10"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "browserList": [
+    "last 2 versions"
+  ]
+}
