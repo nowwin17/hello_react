@@ -41,6 +41,7 @@
  * configure Babel(.bablerc)
  * Babels executes jsx : Babel convert JSX into React.createElement 
  * Babel comes along with parcel
+ * Jsx is not work without babel
  * 
  * *************React Key*************
  * https://reactjs.org/docs/reconciliation.html
