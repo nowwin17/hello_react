@@ -76,4 +76,32 @@
  * But if we use KEY which is unique and assign to each children then any changes then
  * it will update new changes(update,deletion,addition) not everything
  * React Fiber :its new reconcaliation engine which is introduce in React 16 and it has diff algo
+ * 
+ * *******************File Structure and Export component***************
+ * Most commonly practice to make component folder define each individual component there
+ * Export component
+ *  - By default like export default Title; => Import : 
+ *      Default import Title from (./components/<filename>) => import without {}
+ *  - By name: export const Title = () =>(any piece of code) 
+ *      Named Import : import {Title} from (./components/<filename>):import with {}
+ *      We import like this import * as obj from (./components/<filename>): obj.Title
+ * 
+ *  ************************Data Binding*********************
+ * React has one way data binding e.g. input tag we need to bind something to modify input value
+ *  -onChange= {(e)=>console.log(e.target.value)} is responsible on change value of input
+ *      -by using this we will acheive two way binding change value and read value simultaneously
+ * 
+ * *****************************State******************************************
+ * When you need local variable in react then you will need state to maintain it
+ * So you will keep record of that variable 
+ * Whenever we update those variable React will re-render   
+ * 
+ * *****************************Hooks***************************
+ *Hooks just a normal function
+ *useState: Use to create state variable e.g. const {searchText}=useState(), => const searchText;
+ * -useState => return array => first element of array is searchText and second element is function update the 
+ *   variable
+ * -const {searchText,setSearchText}=useState('Burger'): given default value to searchText
+ *    => const searchText=Burger:
+ * -
  */
