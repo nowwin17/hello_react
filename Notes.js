@@ -7,7 +7,7 @@
  * npm run start = npm start
  * 
  * 
- * *****************************parcel**************************************
+ * *****************************parcel or any bundler**************************************
  * 
  * run project npx parcel <entrypoint<index.html>> which creates dev build, create server hmr
  * HMR: Hot module replacing(due to file watcher)
@@ -76,16 +76,20 @@
  * But if we use KEY which is unique and assign to each children then any changes then
  * it will update new changes(update,deletion,addition) not everything
  * React Fiber :its new reconcaliation engine which is introduce in React 16 and it has diff algo
+ * React is fast beacuase fast dom maninpulation
+ * - It will acheive by diff algo 
+ * - It keeps two VD one is current and other previous state
+ * - Its just compare both state  and re-render component and update value of state
  * 
  * *******************File Structure and Export component***************
  * Most commonly practice to make component folder define each individual component there
  * Export component
- *  - By default like export default Title; => Import : 
+ *  - By default like export  Title; => Import : 
  *      Default import Title from (./components/<filename>) => import without {}
  *  - By name: export const Title = () =>(any piece of code) 
  *      Named Import : import {Title} from (./components/<filename>):import with {}
  *      We import like this import * as obj from (./components/<filename>): obj.Title
- * 
+ * default
  *  ************************Data Binding*********************
  * React has one way data binding e.g. input tag we need to bind something to modify input value
  *  -onChange= {(e)=>console.log(e.target.value)} is responsible on change value of input
@@ -94,14 +98,38 @@
  * *****************************State******************************************
  * When you need local variable in react then you will need state to maintain it
  * So you will keep record of that variable 
- * Whenever we update those variable React will re-render   
+ * Whenever we update those variable React will re-render(reconcaliation) whole component  
  * 
  * *****************************Hooks***************************
  *Hooks just a normal function
- *useState: Use to create state variable e.g. const {searchText}=useState(), => const searchText;
+ *
+ *useState: Use to create state variable e.g. const {searchText}=useState(""), => const searchText;
  * -useState => return array => first element of array is searchText and second element is function update the 
  *   variable
- * -const {searchText,setSearchText}=useState('Burger'): given default value to searchText
+ * -const {searchText,setSearchText}=useState('Burger'): given initial value 'Burger' to searchText
  *    => const searchText=Burger:
+ *  -It gives functionality to create a local variable and keep record of it 
  * -
+ * useEffect: Takes callback function 
+ * -We will call by passing dependency array ie. states , when state update it will called(After re-render) 
+ * -If we pass empty dependecy array then it will be called once after initial render(componentDidMount)
+ * 
+ * ******************************MicroServices*********************************
+ * 
+ * 
+ * ****************************Api Call*********************************************
+ * Two ways call api
+ * -User loads website ->make an api call(200ms) -> renderpage(300ms) =>500ms
+ *      (its not best practice ,no UI available 500ms)
+ * -As soon as user loads page -> render initial UI -> make an api call=> update UI
+ *      (its best practice to do , so UI available) we will acheive using useEffect
+ * General practice
+ * Make a call api with useEffect with empty dependency array then it will call an api once after initial render
+ * 
+ * ****************************Confitional Rendering**********************
+ * Early Return : not render component
+ * 
+ * ****************************UI/UX**********************************
+ * Loader:Shimmer effect (UI resembales actual UI)
+ * 
  */

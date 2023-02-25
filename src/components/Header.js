@@ -1,3 +1,4 @@
+import { useState } from "react";
 const Title = () =>(
     <a href="/">
         <img 
@@ -10,6 +11,7 @@ const Title = () =>(
 //React Functional Component is function
 const Header = () =>
 {
+    const [isLoggedIn, setIsLoggedIn]= useState(false)
     return( 
     <div className="header">
     <Title/> {/**call title component */}
@@ -21,6 +23,13 @@ const Header = () =>
         <li>Cart</li>
     </ul>
     </div>
+    {isLoggedIn ? (
+        <button onClick={()=>setIsLoggedIn(false)}>Logout</button>
+    ):(
+    <button onClick={()=>setIsLoggedIn(true)}>Login</button>
+    ) }
+    
+    
     </div>
     ); // multiple lines
 }
