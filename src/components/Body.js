@@ -25,8 +25,8 @@ const Body = () =>{
         );
         const json = await data.json();
         console.log(json)
-        setAllRestaurant(json?.data?.cards[0]?.data?.data?.cards);
-        setFilteredRestaurant(json?.data?.cards[0]?.data?.data?.cards);
+        setAllRestaurant(json?.data?.cards[2]?.data?.data?.cards);
+        setFilteredRestaurant(json?.data?.cards[2]?.data?.data?.cards);
     }
     console.log("render")
     console.log(allRestaurants)

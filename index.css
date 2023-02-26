@@ -28,3 +28,12 @@ width: 100px;
     display: flex; /*Display item in column */
     flex-wrap: wrap; /*Decide whether item display single line or multiple*/
 }
+.shimmer-card{
+    width:200px;
+    height: 200px;
+    background-color: lightgrey;
+    margin: 20px;
+}
+.menu{
+    display: flex;
+}

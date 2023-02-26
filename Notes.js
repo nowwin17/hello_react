@@ -90,6 +90,10 @@
  *      Named Import : import {Title} from (./components/<filename>):import with {}
  *      We import like this import * as obj from (./components/<filename>): obj.Title
  * default
+ * Never create component inside of component
+ * Component
+ * -Make your code modular,maintainable, readable, testable, reusable
+ * 
  *  ************************Data Binding*********************
  * React has one way data binding e.g. input tag we need to bind something to modify input value
  *  -onChange= {(e)=>console.log(e.target.value)} is responsible on change value of input
@@ -109,10 +113,18 @@
  * -const {searchText,setSearchText}=useState('Burger'): given initial value 'Burger' to searchText
  *    => const searchText=Burger:
  *  -It gives functionality to create a local variable and keep record of it 
- * -
+ *  -Never used useState inside if statement, forloop
+ * -Never used useState outside functional component because its created local variable for that component
+ * 
  * useEffect: Takes callback function 
  * -We will call by passing dependency array ie. states , when state update it will called(After re-render) 
- * -If we pass empty dependecy array then it will be called once after initial render(componentDidMount)
+ * -It takes two parameter (Callback function, dependency array)
+ * -If we pass empty dependecy array e.g.useEffect(()=>{getRestaurants();},[])then it will be called once 
+ *  after initial render(componentDidMount)
+ * -if we dont pass anything e.g.useEffect(()=>{getRestaurants();}); then it will called every render
+ * -You can create as much as useEffect in one component
+ * 
+ * 
  * 
  * ******************************MicroServices*********************************
  * 
@@ -132,4 +144,42 @@
  * ****************************UI/UX**********************************
  * Loader:Shimmer effect (UI resembales actual UI)
  * 
+ * **************************Routing************************
+ * Client side routing
+ * -no reload just navigate one component to another
+ * Server side routing
+ * -All of pages coming from server
+ * -older ways(reload whole page when navigating)
+ * 
+ * *********************************Router*********************************
+ * using react-router-dom npm package we are using v6
+ * -createBrowserRouter component imported from react-router-dom
+ * --which create list of path e.g. home,aboutus, etc..
+ * ---It creates list of path object const appRouter = 
+ *      createBrowserRouter([ {path: "/",element: <AppLayout/>,errorElement:<Error/>,children:[{}]},{path: "/aboutus",element: <About/>})]
+ * -RouterProvider is another componet imported from react-router-dom
+ * --It will use to render routes using appRouter config
+ * --Pass props router root.render(<RouterProvider router={appRouter}/>)
+ * -useRouterError: 
+ * --Its hook provided by react-router-dom
+ * --It provides error object
+ * Never used <a> to navigate to router because it reloads whole when its navigate
+ * react-router-dom gives Link component which is responsible for navigation
+ * -Outlet its another component provided by react-router-dom
+ * --const AppLayout = () =>{--return(<><Header/>Outlet Children component on the basis of route path e.g. /, /about, /contact etc <Outlet/><Footer/> </>
+ * --It is used to render child component with layout header and footer on the basis of routes
+ * --So, in createBrowserRouter we add one more tag children and provide object of children there
+ * --And Outlet will takes all children and render on the basis of path
+ * --In simple word <Outlet/> component is used for coditional routing 
+ * --It fills with what you wanted show
+ * -Dynamic Routing
+ * --useParams: It return parameter from url
+ * 
+ * 
+ * *******************************Class Component**********************
+ * 
+ * 
+ * 
+ * 
+ *   
  */
