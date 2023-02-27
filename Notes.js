@@ -177,9 +177,73 @@
  * 
  * 
  * *******************************Class Component**********************
- * 
- * 
- * 
+ * At the end of the day its just normal js class
+ * Extends it with React.Component
+ * It has render(), we cannot created class component without this method
+ * This render() return some jsx
+ * Everything in class component attached with this keyword
+ *--When we passed props , we can access that props this.props.<propsname> 
+ * In class component we will create constructor 
+ * constructor: intialization of class
+ * -- inside it use super(props) 
+ * --we create this.state under it
+ * State
+ * --We do not mutate state directly
+ * --this.setState({count:1}) used for update state
  * 
  *   
+ * 
+ * **************************React Life Cycle****************
+ * Life Cycle has three state
+ *  Initially constructor will call then render and then componentDidMount
+ * So api call must be in componentDidMount()
+ * Life Cycle is divided into two phase
+ * -Render phase:
+ * --Constructor,render will call
+ * -Commit phase
+ * --update dom componentDidMount,componentDidUpdate,componentWillMount
+ * e.g there is one parent and one child
+ * -first load constructor of parent, render of parent
+ * -In render it found child
+ * --So its goes to child ,loads constructor and render and ComponentDid Mount
+ * -Return to parent componentDidMount
+ * e.g. there is two child called from one parent
+ * RenderPhase
+ * -Parent constructor
+ * -Parent render
+ * --child-constructorFirst child
+ * --child-renderFirst child
+ * --child-constructorSecond child
+ * --child-renderSecond child
+ * Commit Phase
+ * --child-componentDidMountFirst child
+ * --child-componentDidMountSecond child
+ * -Parent componentDidMount
+ * If we apply async in componentDidMount of first child
+ * --child-componentDidMountSecond child
+ * -Parent componentDidMount
+ * --child-componentDidMountFirst child(its called but meanwhile it executes other)
+ * 
+ * 
+ * So React batches up render phase and commit parent and each child
+ * - it finishes Render phase of each component start from parent and 
+ * - then finishes commit phase starts from child component 
+ * 
+ * React Life Cycle has three states
+ * Mounting,Updating and Unmounting
+ * Mounting:
+ * -Renderphase: constructor,state,render
+ * -Commitphase: componentDidMount(its called once after first render),setState
+ * --after updating state, its re-render and then Updating start
+ * Updating:
+ * Renderphase: constructor,state,render
+ * -Commitphase: componentDidUpdate(its called after every re-render),setState
+ * Unmount:
+ * -componentWillUnmount(): when we leaving webpage
+ * -Why we need Unmount: cleanup the thing
+ * --In SPA , we will need umnounting when we used setTimeout or setInterval
+ * --because in SPA when we user navigate one page to another page, 
+ * --page is not reload 
+ * Never compare React Life Cycle Methods with Functional component hooks
+ * we can async componentDidMount but cant be useEffect
  */
