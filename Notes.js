@@ -9,6 +9,7 @@
  * 
  * *****************************parcel or any bundler**************************************
  * 
+ * Primary Objective: It bundled our code in one js file
  * run project npx parcel <entrypoint<index.html>> which creates dev build, create server hmr
  * HMR: Hot module replacing(due to file watcher)
  * File Watcher Algorithms (parcels, its writtern in c++)
@@ -29,6 +30,7 @@
  * Transitive Dependencies(Nested dependencies (one dependency depends on another in nested))
  * Tree shaking: Removing unwanted code : e.g. if you use one library and it has 20 other helper library 
  * but you only used 2 or three of it then parcel or any bundler just ignores other very smartly
+ * 
  * 
  * ************************Babel*************************************** 
  * 
@@ -152,14 +154,14 @@
  * -older ways(reload whole page when navigating)
  * 
  * *********************************Router*********************************
- * using react-router-dom npm package we are using v6
+ * using react-router-dom npm package, we are using v6
  * -createBrowserRouter component imported from react-router-dom
  * --which create list of path e.g. home,aboutus, etc..
  * ---It creates list of path object const appRouter = 
  *      createBrowserRouter([ {path: "/",element: <AppLayout/>,errorElement:<Error/>,children:[{}]},{path: "/aboutus",element: <About/>})]
  * -RouterProvider is another componet imported from react-router-dom
  * --It will use to render routes using appRouter config
- * --Pass props router root.render(<RouterProvider router={appRouter}/>)
+ * --Pass props "router" e.g.: root.render(<RouterProvider router={appRouter}/>)
  * -useRouterError: 
  * --Its hook provided by react-router-dom
  * --It provides error object
@@ -170,8 +172,8 @@
  * --It is used to render child component with layout header and footer on the basis of routes
  * --So, in createBrowserRouter we add one more tag children and provide object of children there
  * --And Outlet will takes all children and render on the basis of path
- * --In simple word <Outlet/> component is used for coditional routing 
- * --It fills with what you wanted show
+ * --In simple word <Outlet/> component is used for nested and conditional routing 
+ * --It fills with what you wanted to show
  * -Dynamic Routing
  * --useParams: It return parameter from url
  * 
@@ -185,7 +187,10 @@
  *--When we passed props , we can access that props this.props.<propsname> 
  * In class component we will create constructor 
  * constructor: intialization of class
- * -- inside it use super(props) 
+ * -constructor is a special member function used for initialisation and 
+ * -hence we create the state variables inside a class constructor.
+ * -- inside it use super(props) : super we used to use this key words
+ * ---super(props): passed props inside it to access props (this.props)
  * --we create this.state under it
  * State
  * --We do not mutate state directly
@@ -246,4 +251,42 @@
  * --page is not reload 
  * Never compare React Life Cycle Methods with Functional component hooks
  * we can async componentDidMount but cant be useEffect
+ * 
+ * 
+ * **************************Custom Hook***************************
+ * Why?
+ * -Reusability,Readability, Maintainability(it is easy to debug), it makes a code more testable
+ * -Modularity: we are broken down code to meaningful pieces.
+ * When?
+ * How?
+ * 
+ * Its just a normal js function and not necessarly to return jsx just like functional component
+ * We can use useEffect and useState inside it, in normal function we cant use them
+ *  
+ *
+ * 
+ * **************************Code Optimization***********************
+ * Inlarge scale application we cant bundle in one js file because we have numerous number of component and make our file bulky
+ * There is concept of Chunking, Code Splitting, Dynamic Bundling, Lazy Bundling, On Demand Loading, Dynamic Import
+ * Its all are same
+ * Code Splitting
+ * -Suppose I created large scale application where user can book hotel,train,flight,bus,packages
+ * -So each module have several component
+ * -So we will use this CHunking, code splitting etc(all in same)
+ * -So when user go to anyone module suppose fligt is our home page
+ * --so we can only load component of flight only 
+ * ---If we use lazyLoading import of other module or component
+ * -----const Train = lazy(()=> import("./components/Train")); //(it create separate bundle for this component)
+ *------when you loading your component on demand and react try to render that componet
+ *-------if it is not loaded then react suspended that component while rendering
+ *--------To Avoid this wrap your Component in <Suspense><Train </Suspense> in our routes
+ * --------{
+            path: "/Train",
+            element: <Suspense fallback={<Shimmer/>}><Train/></Suspense> //<Suspense> & lazy() imported from react
+          },
+       Fallback is props: suppose component takes time to load at that time it shows loader     
+ * 
+ * So, in simple word we can creates chunks for every module if there is huge module
+ * lazy(()=> import("./components/Train"));
+ * --it takes callback function and in import we need to pass file path    
  */
