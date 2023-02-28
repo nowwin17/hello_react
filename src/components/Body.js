@@ -1,16 +1,17 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { restrauntList } from "../constants"
 import RestrauntCard from "./RestruantCard"
 import Shimmer from "./Shimmer";
 import { filterData } from "../utils/helper";
 import useOnline from "../utils/hooks/useOnline";
+import UserContext from "../utils/UserContext";
 
 
 const Body = () =>{
     const [allRestaurants, setAllRestaurant] = useState([]);
     const [filteredRestaurants, setFilteredRestaurant] = useState([]);
     const [searchText, setSearchText] = useState("");
-
+    const {user, setUser} = useContext(UserContext);
 
     useEffect(()=>{
         getRestaurants(); 
@@ -54,6 +55,19 @@ const Body = () =>{
        }}> 
          Search 
          </button>
+         <input value={user.name} onChange={(e)=>{
+            setUser({
+                ...user,
+                name: e.target.value,
+                
+            })
+         }}></input>
+           <input value={user.email} onChange={(e)=>{
+            setUser({
+            ...user,
+            email:e.target.value
+            })
+         }}></input>
       </div>
         <div className="flex flex-wrap m-3">
             

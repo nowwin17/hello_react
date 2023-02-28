@@ -126,6 +126,8 @@
  * -if we dont pass anything e.g.useEffect(()=>{getRestaurants();}); then it will called every render
  * -You can create as much as useEffect in one component
  * 
+ * useContext: Use to get data from create context
+ * 
  * 
  * 
  * ******************************MicroServices*********************************
@@ -328,12 +330,52 @@
  * -Scss gives super power to writing css
  * -At the end of day SCSS converted into css
  *    
+ * Diff b/w props and state
+ * State : state is local variable and stcik to on conatiner but it can change 
+ * Props: When passing data one to another component we used props
+ * Props can be local variable for parent that we passed on to child as props
+ * 
+ * 
  * 
  * *************************Data Handling****************************************
+ * State and props: which are responsible for rendering data on UI
+ * Props Drilling : sending data from parent - child - child of child -child of child component and goes on
+ * --Data flow from parent to grand-grand-children
+ * Lifting the state up : when we control sibling component from parent component
+ * Local storage: updating local storage is heavy operation 
+ * Context: Central space to store data that can we access across app without passing props(avoid props drilling)
+ * --createContext(): its just function imported from react 
+ * ---is used to create context of data
+ * --useContext:its hook imported from react
+ * ---is used to get data that we created using createContent
  * 
- * 
- * 
- * 
- * 
- * 
+ * --In class based component
+ * ---- <UserContext.Consumer>
+                {({user})=><h4 className="font-bold text-xl p-10">{user.name}</h4>}
+              </UserContext.Consumer>
+
+ * ------<UserContext.Provider value={{user:user}}> // it update when user is updated 
+  -------<child>            
+  --------<UserContext.Provider>
+ *----Using <UserContext.Consumer> we will get update data which is inside <UserContext.Provider
+ *----Using useContext() you will get data 
+ *--------<UserContext.Provider value={{user:user, setUser}}>
+            so using setUser we can update user from any child
+                const {user, setUser} = useContext(UserContext);
+                 <input value={user.name} onChange={(e)=>{
+            setUser({
+                ...user,
+                name: e.target.value,
+                
+            })
+         }}></input>
+
+
+ * Redux :
+ * -Its uses for handling data management (huge data)
+ * -When application becomes large then we will need redux
+ * -It manages data more properly
+ * Cons:-It is complex setup and difficult to understand
+ *
+
  */

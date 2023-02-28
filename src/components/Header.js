@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import Logo from "../assets/img/logo.png";
 import { Link } from "react-router-dom";
-
+import UserContext from "../utils/UserContext";
 const Title = () =>(
     <a className="flex justify-center sm:justify-start" href="/">
         <img 
@@ -15,6 +15,7 @@ const Title = () =>(
 const Header = () =>
 {
     const [isLoggedIn, setIsLoggedIn]= useState(false)
+    const {user} = useContext(UserContext)
     return( 
     <div className="sm:flex justify-between bg-pink-50 shadow-lg">
     <Title/> {/**call title component */}
@@ -37,6 +38,10 @@ const Header = () =>
         </li>  
     </ul>
     </div>
+    <h1>get user from context</h1>
+    <span className="p-10 font-bold text-red-400">{user.name}</span>
+    <span className="p-10 font-bold text-red-400">{user.email}</span>
+
     {isLoggedIn ? (
         <button onClick={()=>setIsLoggedIn(false)}>Logout</button>
     ):(
