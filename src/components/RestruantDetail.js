@@ -10,8 +10,8 @@ const RestrauntDetail = () =>{
     const restaurant = useRestaurant(id);
     
     return(!restaurant)?(<Shimmer/>):(
-        <div className="menu">
-            <div>
+        <div className="flex m-2">
+            <div className="m-2">
             <h1>Restraunt id:{id}</h1>
             <h2>{restaurant?.name}</h2>
             <img src={IMG_CDN_URL+restaurant?.cloudinaryImageId}></img>
@@ -19,8 +19,8 @@ const RestrauntDetail = () =>{
             <h3>{restaurant?.city}</h3>
             <h3>{restaurant?.avgRating} Star</h3>
             </div>
-            <div>    
-            <h1>Menu</h1>
+            <div className="m-2">    
+            <h1 className="text-bold">Menu</h1>
             
             <ul>
               {Object.values(restaurant?.menu?.items).map((item)=>{

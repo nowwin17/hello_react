@@ -288,5 +288,52 @@
  * 
  * So, in simple word we can creates chunks for every module if there is huge module
  * lazy(()=> import("./components/Train"));
- * --it takes callback function and in import we need to pass file path    
+ * --it takes callback function and in import we need to pass file path 
+ * 
+ * Never ever lazy load any component inside of any component (because it lazy load every re-render cycle) 
+ *
+ * 
+ * 
+ * ****************************Css Framework(Tailwind)************************
+ * How many ways we write css
+ * -Normal css file  
+ * -SCSS
+ * -Inline css --Always avoid to write inline css
+ * --Advantage: Saving Time
+ * --Disavantage: 
+ * ---not be reusable it makes repetative,
+ * ---Difficult to maintain
+ * ---Its difficult to proceess
+ * -UI library like materila UI,Base UI, Ant UI, Chakara UI, Bootstrap UI
+ * --Pros:Easy to use,inbuilt component,save lots of time, automated theming, consistent UI
+ * --Cons:It makes bundle size heavy, loose lot of control UI appreance(customization pain)
+ * -Styled Components: we can create component of each element like button,input and use them
+ * --Cons:Not easy to use, less readable
+ * 
+ * -Tailwind CSS Framework
+ * --Main Advantage : we can write code on the go (write css in same file of html)
+ * --Reusability
+ * ---It has inbuilt classes
+ * --Less bundle size
+ * --Flexible UI(We can easily customize)     
+ * -Everything tellwind classname like <span class="text-bold"></span>
+ * -PostCss -its tool to compile tailwind css to normal css by creating .postcssrc file
+ * -square bracket notation when you wnat to customize tailwind classes like className="w-[200px]"
+ * --Avoid as much as possible otherwise each customization tailwind create new classes
+ * -Tailwind only included those class that we used in code , it makes bundle size less 
+ * --Main cons: code looks ugly when we pass multiple clasess, code is not readable
+ *  
+ * Advantage of SCSS over Normal css
+ * -Readibility, variable, reusability, nesting 
+ * -Scss gives super power to writing css
+ * -At the end of day SCSS converted into css
+ *    
+ * 
+ * *************************Data Handling****************************************
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
  */

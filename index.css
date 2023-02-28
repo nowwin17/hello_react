@@ -1,39 +1,4 @@
-.logo {
-width: 100px;
-}
-.header{
-    display: flex;
-    justify-content: space-between;
-    margin: 10px;
-    border: 1px black solid;
-
-}
-.nav-items > ul{
-    list-style-type: none;
-    display: flex;
-}
-.nav-items > ul > li{
-    padding: 10px;
-}
-.card{
-    width: 200px;
-    border: 1px solid black;
-    padding: 10px;
-    margin: 10px;
-}
-.card > img {
-    width: 100%;
-}
-.restaurant-list{
-    display: flex; /*Display item in column */
-    flex-wrap: wrap; /*Decide whether item display single line or multiple*/
-}
-.shimmer-card{
-    width:200px;
-    height: 200px;
-    background-color: lightgrey;
-    margin: 20px;
-}
-.menu{
-    display: flex;
-}
+@tailwind base;
+@tailwind components; 
+@tailwind utilities;
+ 

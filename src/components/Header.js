@@ -3,9 +3,9 @@ import Logo from "../assets/img/logo.png";
 import { Link } from "react-router-dom";
 
 const Title = () =>(
-    <a href="/">
+    <a className="flex justify-center sm:justify-start" href="/">
         <img 
-        className="logo"
+        className="h-28 p-2"
          alt="logo"
     src={Logo}/>
          </a>
@@ -16,22 +16,22 @@ const Header = () =>
 {
     const [isLoggedIn, setIsLoggedIn]= useState(false)
     return( 
-    <div className="header">
+    <div className="sm:flex justify-between bg-pink-50 shadow-lg">
     <Title/> {/**call title component */}
     <div className="nav-items">
-        <ul>
-        <li><Link to="/">Home
+        <ul className="flex py-10">
+        <li className="px-2"><Link to="/">Home
         </Link></li>
-        <li><Link to="/about">        
+        <li className="px-2"><Link to="/about">        
         About Us
         </Link></li>
-        <li><Link to="/contact">
+        <li className="px-2"><Link to="/contact">
         Contact Us
-        </Link></li>
-        <li><Link to="/instamart">
+        </Link ></li>
+        <li className="px-2"><Link to="/instamart">
         InstaMart
         </Link></li>
-        <li><Link to="/cart">
+        <li className="px-2"><Link to="/cart">
             Cart
         </Link>  
         </li>  
