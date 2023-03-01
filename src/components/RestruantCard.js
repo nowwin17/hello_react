@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import { IMG_CDN_URL } from "../constants"
 const RestrauntCard = ({id,name, cuisines, cloudinaryImageId, deliveryTime}) =>{
-    {/**const {name, cuisines, cloudinaryImageId, deliveryTime} = restaurant; Destructure to make code clean */}
+    {/**const {name, cuisines, cloudinaryImageId, deliveryTime} = restaurant; Destructure on fly to make code clean */}
    return (
     <Link to={"/restruant/"+id}>
     <div className="card w-56 h-72 p-2 m-2 shadow-lg bg-pink-50">

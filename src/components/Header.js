@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import Logo from "../assets/img/logo.png";
 import { Link } from "react-router-dom";
 import UserContext from "../utils/UserContext";
+import { useSelector } from "react-redux";
 const Title = () =>(
     <a className="flex justify-center sm:justify-start" href="/">
         <img 
@@ -14,6 +15,8 @@ const Title = () =>(
 //React Functional Component is function
 const Header = () =>
 {
+    const cartItems = useSelector(store=> store.cart.items); // i want to subscribe my cartItems from store
+   console.log(cartItems)
     const [isLoggedIn, setIsLoggedIn]= useState(false)
     const {user} = useContext(UserContext)
     return( 
@@ -33,7 +36,7 @@ const Header = () =>
         InstaMart
         </Link></li>
         <li className="px-2"><Link to="/cart">
-            Cart
+            Cart - {cartItems.length} items
         </Link>  
         </li>  
     </ul>

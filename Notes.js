@@ -128,6 +128,8 @@
  * 
  * useContext: Use to get data from create context
  * 
+ * useSelector: to read data from redux store
+ * 
  * 
  * 
  * ******************************MicroServices*********************************
@@ -370,12 +372,97 @@
             })
          }}></input>
 
-
  * Redux :
  * -Its uses for handling data management (huge data)
  * -When application becomes large then we will need redux
  * -It manages data more properly
  * Cons:-It is complex setup and difficult to understand
  *
+ * ReduxToolKit
+ * -It resolve three common concerns about Redux
+ * --Configuring a Redux Store is too complicated
+ * --I have to add a lot of packages to get Redux to do anything useful
+ * --Redux requires too much boilerplate code
+ * with reduxtoolkit library we will need to install react-redux
+ * react-redux: bridge between react and redux
+ * 
+ * Redux Architecture
+ * -Redux Store:
+ * --At end of the day big all object, 
+ * --its like separate store , it can be access all component
+ * --Store has different slice(userSlice, authenticateSlice, cardSlice, cartSlice)
+ * ----We broken down big store into small peices
+ * -Dispatch & Action:
+ * --Any event trigger(like click on additem button), so action addItem
+ * --Action call a function and this function modify our store 
+ * --e.g. we click on addItem btn we dispatch action and action call function and that function modify store(cartSlice)
+ * -Reducer:
+ * --its function which is called by action and 
+ * --this function update slice of store (cartSlice)
+ * --e.g.If we clicked on addItem btn that dispatches action   //addItemBtn->dispatch(Action)->reducer
+ * ------and that action called reducer function and          //                                  |   update store
+ * ------that function update store or slice of store (cartSlice) //  cartUI  <--- Selector  <--Store 
+ * -Selector:useSelector() hook                                                      |
+ * --If read store e.g. what item we added in cartSlice                          subscribe(something modify on UI)
+ * --We can read that cartSlice store using this selector
+ * --e.g we subscribing to store(cart component has subscribe store)
+ * ----its like reading from store or we can say sync with store 
+ * 
+ * 
+ * To create store 
+ * --Import configureStore from reduxjs/toolkit
+ * ---import { configureStore } from "@reduxjs/toolkit";
+ * ----const store = configureStore({});
+ * ------export default store;
+ * ---It will help us to create store slices e.g. (cartSlice, userSlice)
+ * --We will need to connect Store with react
+ *   <Provider store={store}> // passing store as props //provider imported from react-redux
+ *    wrap whole app inside it
+ * </Provider>
+ * createSlice: its imported from rtk
+ * --for create slice  //const cartSlice = createSlice({
+    --name: 'cart',
+    ---initialState:{
+        items:[]
+    ---},
+    --reducers:{
+        addItem: (state,action) =>{ //mapping of action and reducer function
+ //update state     state.items.push(action.payload)  //action contains data => action.payload
+        },
+        removeItem:(state,action) => {
+            state.items.pop() 
+        },
+        clearCart:(state) => { // in this we dont need action.payload
+            state.items = []; // dont return anything from it
+        }
+    }
+})
+export const { addItem, removeItem, clearCart } = cartSlice.actions;
+//cartSlice export actions and reducer , cartSlice like object
+export default cartSlice.reducer;
+ * 
+ * --Import this cartSlice in store 
+ * ---import { configureStore } from "@reduxjs/toolkit";
+ * ---import cartSlice from "./cartSlice";
+ * ----const store = configureStore({
+ * ----reducer:{
+ * -------cart: cartSlice,
+ * ----}
+ * ---});
+ * ---export default store;
+ * 
+ * Provider component,useSelector,useDispatch hook Imported from "react-redux"
+ *     const cartItems = useSelector(store=> store.cart.items); // i want to subscribe my cartItems from store
+ * --------------------read from store
+ * --- const dispatch = useDispatch(); //dispatch hooks
+ * -----const handleAddItem = () =>{
+ * -----dispatch(addItem("Grapes")); //dispatch action addItem with payload -> "Grapes"
+ * --------} 
+ * 
+ *    Always subscribe slice of store that required for component (it improves performance)
+
+ * 
+ * 
+ * 
 
  */
