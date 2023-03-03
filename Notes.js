@@ -22,7 +22,7 @@
  * It also minified ,compress media files
  * It also does caching , caching by development
  * It also take care of compatibility with old browser version(browserlist)
- * It also take care of pollyfills
+ * It also take care of pollyfills(filling gaps)
  * It also provide functionality enable https in dev server
  * It also manages port no.
  * It has consistent hashing algorithm 
@@ -74,7 +74,7 @@
  * Reconcaliation has diff algorithm which uses by react to identify diff of trees VD and dom 
  * and updates only changes in dom
  * Whenever there is multiple children of same tag(div, li or any) then React will re-render everything 
- * if there any changeson those childrens
+ * if there any changes on those childrens
  * But if we use KEY which is unique and assign to each children then any changes then
  * it will update new changes(update,deletion,addition) not everything
  * React Fiber :its new reconcaliation engine which is introduce in React 16 and it has diff algo
@@ -158,11 +158,23 @@
  * -older ways(reload whole page when navigating)
  * 
  * *********************************Router*********************************
+ * createBrowserRouter, <RouterProvider router={appRouter}>,<Outlet>,lazyLoad(),<Suspension>,useRouterError
  * using react-router-dom npm package, we are using v6
  * -createBrowserRouter component imported from react-router-dom
  * --which create list of path e.g. home,aboutus, etc..
  * ---It creates list of path object const appRouter = 
- *      createBrowserRouter([ {path: "/",element: <AppLayout/>,errorElement:<Error/>,children:[{}]},{path: "/aboutus",element: <About/>})]
+ *      createBrowserRouter([ 
+ * {path: "/",
+ * element: <AppLayout/>
+ * ,errorElement:<Error/>
+ * ,children:[{
+            path: "/",
+            element: <Body/>
+          },]
+ * },
+ * {path: "/aboutus",
+ * element: <About/>
+ * })]
  * -RouterProvider is another componet imported from react-router-dom
  * --It will use to render routes using appRouter config
  * --Pass props "router" e.g.: root.render(<RouterProvider router={appRouter}/>)
@@ -234,7 +246,7 @@
  * --child-componentDidMountFirst child(its called but meanwhile it executes other)
  * 
  * 
- * So React batches up render phase and commit parent and each child
+ * So React batches up render phase and commit phase for parent and each child
  * - it finishes Render phase of each component start from parent and 
  * - then finishes commit phase starts from child component 
  * 
@@ -270,7 +282,8 @@
  *
  * 
  * **************************Code Optimization***********************
- * Inlarge scale application we cant bundle in one js file because we have numerous number of component and make our file bulky
+ * Inlarge scale application we cant bundle in one js file because we have numerous number of component and 
+ * make our file bulky
  * There is concept of Chunking, Code Splitting, Dynamic Bundling, Lazy Bundling, On Demand Loading, Dynamic Import
  * Its all are same
  * Code Splitting
@@ -333,7 +346,7 @@
  * -At the end of day SCSS converted into css
  *    
  * Diff b/w props and state
- * State : state is local variable and stcik to on conatiner but it can change 
+ * State : state is local variable and stick to on conatiner but it can change 
  * Props: When passing data one to another component we used props
  * Props can be local variable for parent that we passed on to child as props
  * 
@@ -462,7 +475,69 @@ export default cartSlice.reducer;
  *    Always subscribe slice of store that required for component (it improves performance)
 
  * 
+ *
  * 
+ * 
+ * ***************************Test React App********************************
+ * React Testing Library: it using jest behind scene
+ * Why do we need Test Case?
+ * -Check data flow is not breaking within component as we modify component or add new feature
+ * -It gives ability that not breaking code when we add new component or new features
+ * Test Driven Development:(We write a test cases before even code)
+ * Different types of testing
+ * -Manual testing: not that effecient
+ * -Automated Testing: code testing code
+ *     -Selenium : its tool
+ * -End to end testing: It covers entire flow of application
+ * -headless browser: need to search 
+ * -Unit Testing: its core job of developer
+ *    -Test a each small unit of page
+ * -Integration Testing: data behaviour , again develope job
+ * -regression testing
+ * -smoke testing
+ * -blackbox testing
+ * -load testing
+ * 
+ * Jest: js testing library
+ * Setup:
+ * -install react testing library
+ * --npm install --save-dev @testing-library/react
+ * -install jest
+ * --npm i -D jest
+ * -configure jest
+ * --npx jest --init
+ *  --Choose the test environment that will be used for testing › - Use arrow-keys. Return to submit.
+ * ------node
+ *  ------jsdom (browser-like) choose this
+ *- --Do you want Jest to add coverage reports? … yes
+ *  --Which provider should be used to instrument code for coverage? v8 or babel 
+ * --✔ Automatically clear mock calls, instances, contexts and results before every test? … yes
+ * --It will created jest.config.js
+ * npm i -D jest-environment-jsdom
+ * Create my first test case
+ * Create directory __test__ so jest matches it check test cases inside it
+ * create test file like sum.test.js its standard
+ *   Create test case
+ *  test("check sum of two positive numbers",()=>{
+ *     expect(sum(2,3)).toBe(5)
+ *    })
+ * Configure babel wit jest
+ * --npm install --save-dev babel-jest @babel/core @babel/preset-env
+ * --.babelrc or babel.config.js
+ * --and put {"presets": [
+ * ------------["@babel/preset-env", {"targets": {"node": "current"}}],
+ * ----------- ["@babel/preset-react", {"runtime": "automatic"}] //to enable jsx for test cases file]}
+ * To run test cases using 
+ * npm run test 
+ * --(its run application for test cases and 
+ *     it manages by jest  // The test environment that will be used for testing testEnvironment: "jsdom",)
+ * in .gitignore add /coverage so it will ignore coverage report
+ *
+ * 
+ * Unit Testing
+ * 1. Test for header (load header: logo is there, cartitem is 0, status is online)
+ * 
+ *  
  * 
 
  */

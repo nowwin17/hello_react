@@ -22,11 +22,10 @@ const Body = () =>{
         "https://www.swiggy.com/dapi/restaurants/list/v5?lat=23.1436697&lng=75.7691262&page_type=DESKTOP_WEB_LISTING"
         );
         const json = await data.json();
-        console.log(json)
+       // console.log(json)
         setAllRestaurant(json?.data?.cards[2]?.data?.data?.cards);
         setFilteredRestaurant(json?.data?.cards[2]?.data?.data?.cards);
     }
-    console.log("render")
     const isOnline = useOnline();
     if(!isOnline){
         return <h1> Offline, please check your internet connection</h1>
@@ -38,6 +37,7 @@ const Body = () =>{
       <>        
       <div className="search-conatainer p-5 bg-pink-50 my-5">
         <input type="text" 
+        data-testid="search-input"
         className="focus:bg-purple-200"
          placeholder="Search"
          value={searchText}
@@ -46,8 +46,7 @@ const Body = () =>{
             //e.target.value=> whatever you write in input
             setSearchText(e.target.value)
          }} />
-         <button 
-         className="btn p-2 m-2 bg-purple-500 hover:bg-purple-900 text-white rounded-md"
+         <button data-testid="search-btn" className="btn p-2 m-2 bg-purple-500 hover:bg-purple-900 text-white rounded-md"
          onClick={()=>{
       // filterData()
       const filteredData = filterData(searchText,allRestaurants);
@@ -69,7 +68,7 @@ const Body = () =>{
             })
          }}></input>
       </div>
-        <div className="flex flex-wrap m-3">
+        <div className="flex flex-wrap m-3" data-testid="restlist">
             
             {
               filteredRestaurants.length > 0
